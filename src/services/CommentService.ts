@@ -14,6 +14,7 @@ export class CommentService {
 
     /** Create a new comment */
     async createComment(data: NewCommentType, ip_address: string): Promise<number> {
+        data.parent_id = data.parent_id === 0 ? null : (data.parent_id ?? null)
         return this.repository.create(data, ip_address)
     }
 
