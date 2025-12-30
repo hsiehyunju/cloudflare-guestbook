@@ -21,7 +21,7 @@ export class CommentRepository {
 
     async findAllByTargetId(targetId: string): Promise<CommentType[]> {
         const result = await this.db.prepare(
-            'SELECT * FROM comments WHERE target_id = ? ORDER BY created_at DESC'
+            'SELECT * FROM comments WHERE target_id = ? ORDER BY created_at'
         ).bind(targetId).all<CommentType>()
 
         return result.results
