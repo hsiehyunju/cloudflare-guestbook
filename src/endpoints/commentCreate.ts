@@ -24,11 +24,9 @@ export class CommentCreate extends OpenAPIRoute {
                 content: {
                     "application/json": {
                         schema: z.object({
-                            series: z.object({
-                                success: Bool(),
-                                result: z.object({
-                                    comment: Comment,
-                                }),
+                            success: Bool(),
+                            result: z.object({
+                                comment: Comment,
                             }),
                         }),
                     },
