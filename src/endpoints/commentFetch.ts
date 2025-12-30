@@ -1,4 +1,4 @@
-import { OpenAPIRoute } from "chanfana";
+import { OpenAPIRoute, Str } from "chanfana";
 import { z } from "zod";
 import { type AppContext, CommentWithRepliesSchema } from "../types";
 
@@ -11,7 +11,10 @@ export class CommentFetch extends OpenAPIRoute {
         summary: "Get comments tree by target ID",
         request: {
             query: z.object({
-                target_id: z.string().describe("Unique identifier for the article or content"),
+                target_id: Str({
+                    required: true,
+                    description: "Unique identifier for the article or content",
+                }),
             }),
         },
         responses: {
