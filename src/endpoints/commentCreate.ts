@@ -54,7 +54,7 @@ export class CommentCreate extends OpenAPIRoute {
             if (!isVerified) {
                 return c.json({
                     success: false,
-                    error: "Turnstile verification failed " + c.env.TURNSTILE_SECRET_KEY,
+                    error: "Turnstile verification failed",
                 }, 400);
             }
         } catch (e) {
