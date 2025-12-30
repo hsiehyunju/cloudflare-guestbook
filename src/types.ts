@@ -16,7 +16,7 @@ export const Comment = z.object({
 
 export const NewComment = z.object({
 	target_id: Str({ required: true }),
-	parent_id: z.number().optional(),
+	parent_id: z.number().optional().nullable(),
 	nickname: Str({ required: true }),
 	content: Str({ required: true }),
 	trunstile_token: z.string(),
