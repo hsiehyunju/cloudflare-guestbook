@@ -14,10 +14,10 @@
 		{
 			"binding": "guestbook_db",
 			"database_name": "guestbook-db",
-			"database_id": "87211eba-c2e5-41f6-86bf-db615691c201",
+			"database_id": "089bcd30-0e1b-4b9c-9037-de6b54e8235c",
 			"remote": true
 		}
-	]
+	],
 	/**
 	 * Smart Placement
 	 * https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement
