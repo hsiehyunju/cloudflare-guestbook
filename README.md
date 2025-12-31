@@ -2,6 +2,8 @@
 
 # Cloudflare Guestbook Worker
 
+![License](https://img.shields.io/github/license/hsiehyunju/cloudflare-guestbook)
+
 This is a guestbook backend API built with Cloudflare Workers, using [chanfana](https://github.com/cloudflare/chanfana) (OpenAPI 3.1) and the [Hono](https://github.com/honojs/hono) framework.
 
 This project supports auto-generation of `openapi.json` documentation, stores comments using a D1 database, and integrates Cloudflare Turnstile for verification.

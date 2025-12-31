@@ -2,6 +2,8 @@
 
 # Cloudflare Guestbook Worker
 
+![License](https://img.shields.io/github/license/hsiehyunju/cloudflare-guestbook)
+
 這是一個使用 Cloudflare Workers 建構的訪客留言板後端 API，使用了 [chanfana](https://github.com/cloudflare/chanfana) (OpenAPI 3.1) 和 [Hono](https://github.com/honojs/hono) 框架。
 
 本專案支援自動生成 `openapi.json` 文檔，並且使用 D1 資料庫存儲留言，整合 Cloudflare Turnstile 進行驗證。
