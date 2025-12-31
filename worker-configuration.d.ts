@@ -8,6 +8,7 @@ declare namespace Cloudflare {
 	interface Env {
 		guestbook_db: D1Database;
         TURNSTILE_SECRET_KEY: string;
+        TURNSTILE_ENABLED: boolean;
 	}
 }
 interface Env extends Cloudflare.Env {}

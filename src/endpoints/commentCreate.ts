@@ -5,6 +5,7 @@ import { type AppContext, Comment, NewComment } from "../types";
 import { CommentRepository } from "../repositories/CommentRepository";
 import { CommentService } from "../services/CommentService";
 import { TurnstileRepository } from "../repositories/TurnstileRepository";
+import { isTurnstileEnabled } from "../utils";
 
 export class CommentCreate extends OpenAPIRoute {
     schema = {
@@ -47,21 +48,23 @@ export class CommentCreate extends OpenAPIRoute {
         const ip_address = c.req.header("CF-Connecting-IP") || "0.0.0.0";
 
         // Verify Trunstile Token
-        try {
-            const turnstileRepository = new TurnstileRepository(c.env.TURNSTILE_SECRET_KEY);
-            const isVerified = await turnstileRepository.verify(body.trunstile_token, ip_address);
+        if (isTurnstileEnabled(c.env)) {
+            try {
+                const turnstileRepository = new TurnstileRepository(c.env.TURNSTILE_SECRET_KEY);
+                const isVerified = await turnstileRepository.verify(body.trunstile_token, ip_address);
 
-            if (!isVerified) {
+                if (!isVerified) {
+                    return c.json({
+                        success: false,
+                        error: "Turnstile verification failed",
+                    }, 400);
+                }
+            } catch (e) {
                 return c.json({
                     success: false,
-                    error: "Turnstile verification failed",
+                    error: "Turnstile verification error",
                 }, 400);
             }
-        } catch (e) {
-            return c.json({
-                success: false,
-                error: "Turnstile verification error",
-            }, 400);
         }
 
         // Initialize repository and service
