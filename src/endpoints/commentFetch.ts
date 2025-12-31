@@ -10,8 +10,8 @@ export class CommentFetch extends OpenAPIRoute {
         tags: ["Comments"],
         summary: "Get comments tree by target ID",
         request: {
-            query: z.object({
-                target_id: Str({
+            params: z.object({
+                targetId: Str({
                     required: true,
                     description: "Unique identifier for the article or content",
                 }),
@@ -35,14 +35,14 @@ export class CommentFetch extends OpenAPIRoute {
     async handle(c: AppContext) {
         // 1. Get validated data
         const data = await this.getValidatedData<typeof this.schema>();
-        const { target_id } = data.query;
+        const { targetId } = data.params;
 
         // 2. Initialize repository and service
         const repo = new CommentRepository(c.env.guestbook_db);
         const service = new CommentService(repo);
 
         // 3. Get comment tree
-        const commentTree = await service.findAllByTargetId(target_id);
+        const commentTree = await service.findAllByTargetId(targetId);
 
         // 4. Return
         return {

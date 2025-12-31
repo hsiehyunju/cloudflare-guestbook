@@ -17,7 +17,7 @@ const openapi = fromHono(app, {
 
 // Register OpenAPI endpoints
 openapi.post("/api/comments", CommentCreate);
-openapi.get("/api/comments/:commentId", CommentFetch);
+openapi.get("/api/comments/:targetId", CommentFetch);
 
 // Export the Hono app
 export default app;
